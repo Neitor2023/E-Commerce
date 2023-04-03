@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import store from './store';
 import { Provider } from 'react-redux';
-import "bootswatch/dist/lux/bootstrap.min.css"
 import './index.css'
+import "bootswatch/dist/lux/bootstrap.min.css"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
