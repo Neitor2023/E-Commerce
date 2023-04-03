@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios'
+import { setIsLoading } from './isLoading.slice';
 
 export const newsSlice = createSlice({
     name: 'news',
@@ -12,7 +13,7 @@ export const newsSlice = createSlice({
 })
 
 export const getNewsThunk = () => dispatch =>{
-
+    dispatch(setIsLoading(true))
     axios
         .get( "https://news-app-api.academlo.tech/news/" )
         .then( resp => dispatch( setNews(resp.data) ) )
