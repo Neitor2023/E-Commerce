@@ -3,44 +3,47 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import { getProductsThunk } from '../store/slices/products.slice';
+import { useSelector, useDispatch } from 'react-redux'
+import { getNewsThunk } from '../store/slices/news.slice'
+import { useEffect } from 'react'
 
 const Home = () => {
-  const products = useSelector(state => state.products)
+  const news = useSelector(state => state.news)
   const dispatch = useDispatch()
-  useEffect(()=> {
-    dispatch(getProductsThunk())
+
+  useEffect(() => {
+    dispatch(getNewsThunk())
   }, [])
 
   return (
     <div>
       <Container>
-        <Row xs={1} md={2} lg={3} className='py-3'>
-          {products.map(product => (
-            <Col className='mb-3' key={product.id}>
-              <Card >
-                <Card.Img 
-                variant="top" 
-                src={product.images[0].url}
-                style={{height:200, objectFit:"cover"}}
-                />
-                <Card.Body>
-                  <Card.Title>{product.title}</Card.Title>
-                  <Card.Text>
-                    {product.description}
-                  </Card.Text>
-                  <Button variant="primary">Ver detalle</Button>
-                </Card.Body>
-              </Card>
-            </Col>
-          ))
+        <Row xs={1} md={2} lg={3} className="py-3">
+          {
+            news.map(item => (
+              <Col className="mb-3" key={item.id}>
+                <Card>
+                  <Card.Img
+                    variant="top"
+                    src={item.image}
+                    style={{ height: 200, objectFit: "cover" }}
+                  />
+                  <Card.Body>
+                    <Card.Title>{item.headline}</Card.Title>
+                    <Card.Text>
+                      {item.lead}
+                    </Card.Text>
+                    <Button variant="primary">Ver detalle</Button>
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))
           }
         </Row>
       </Container>
     </div>
   );
-};
+}
 
 export default Home;
+

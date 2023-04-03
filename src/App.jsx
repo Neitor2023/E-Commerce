@@ -1,14 +1,10 @@
-import {
-  HashRouter,
-  Routes,
-  Route
-} from 'react-router-dom'
-import './App.css'
-import Navbar from './components/Navbar';
-import Home from './pages/Home';
-import ProductDetail from './pages/ProductDetail';
-import Login from './pages/Login';
-import Purchase from './pages/Purchase';
+import "./styles.css";
+import { HashRouter, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import NewsDetail from "./pages/NewsDetail";
+import Login from "./pages/Login";
+import Favorites from "./pages/Favorites";
 
 function App() {
   return (
@@ -17,9 +13,9 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path='/product/:id' element={<ProductDetail />} />
-          <Route path='/login/' element={<Login />} />
-          <Route path='/purchase/' element={<Purchase />} />
+          <Route path="/news/:id" element={<NewsDetail />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/favorites" element={<Favorites />} />
         </Routes>
       </div>
     </HashRouter>
