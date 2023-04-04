@@ -3,47 +3,98 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import { useSelector, useDispatch } from 'react-redux'
-import { getNewsThunk } from '../store/slices/news.slice'
-import { useEffect } from 'react'
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
+import { useSelector, useDispatch } from 'react-redux';
+import { getProductsThunk, filterCategoriesThunk, filterTitleThunk } from '../store/slices/products.slice';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
-  const news = useSelector(state => state.news)
   const dispatch = useDispatch()
-
+  const products = useSelector(state => state.products)
+  const [categories, setCategories] = useState([])
+  const [inputSearch, setInputSearch] = useState("")
   useEffect(() => {
-    dispatch(getNewsThunk())
+    dispatch(getProductsThunk())
+
+    axios
+      .get("https://e-commerce-api-v2.academlo.tech/api/v1/categories")
+      .then(resp => setCategories(resp.data))
+      .catch(error => console.error(error))
+
   }, [])
 
   return (
     <div>
       <Container>
-        <Row xs={1} md={2} lg={3} className="py-3">
-          {
-            news.map(item => (
-              <Col className="mb-3" key={item.id}>
-                <Card>
-                  <Card.Img
-                    variant="top"
-                    src={item.image}
-                    style={{ height: 200, objectFit: "cover" }}
-                  />
-                  <Card.Body>
-                    <Card.Title>{item.headline}</Card.Title>
-                    <Card.Text>
-                      {item.lead}
-                    </Card.Text>
-                    <Button variant="primary">Ver detalle</Button>
-                  </Card.Body>
-                </Card>
-              </Col>
-            ))
+        <Row className='py-3'>
+          {categories.map(category => (
+            <Col key={category.id}>
+              <Button
+                className='w-100'
+                onClick={() => dispatch(filterCategoriesThunk(category.id))}>
+                {category.name}
+              </Button>
+            </Col>
+          ))
+          }
+          <Col>
+            <Button
+              className='w-100'
+              onClick={() => dispatch(getProductsThunk())}
+            >
+              All
+            </Button>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <InputGroup className="mb-3">
+              <Form.Control
+                placeholder="Busca Productos por nombre"
+                aria-label="News's name"
+                aria-describedby="basic-addon2"
+                value={inputSearch}
+                onChange={e => setInputSearch(e.target.value)}
+              />
+              <Button
+                variant="outline-primary"
+                onClick={() => dispatch(filterTitleThunk(inputSearch))}
+              >
+                Search
+              </Button>
+            </InputGroup>
+          </Col>
+        </Row>
+        <Row xs={1} md={2} lg={3} className='py-3'>
+          {products.map(product => (
+            <Col className='mb-3' key={product.id}>
+              <Card >
+                <Card.Img
+                  variant="top"
+                  src={product.images[0].url}
+                  style={{ height: 200, objectFit: "cover" }}
+                />
+                <Card.Body>
+                  <Card.Title>{product.title}</Card.Title>
+                  <Card.Text>
+                    {product.description}
+                  </Card.Text>
+                  <Button
+                    as={Link}
+                    to={`/product/${product.id}`}
+                    variant="primary">Ver detalle</Button>
+                </Card.Body>
+              </Card>
+            </Col>
+          ))
           }
         </Row>
       </Container>
     </div>
   );
-}
+};
 
 export default Home;
-

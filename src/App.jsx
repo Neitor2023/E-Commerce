@@ -1,25 +1,32 @@
-import "./styles.css";
-import { HashRouter, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Home from "./pages/Home";
-import NewsDetail from "./pages/NewsDetail";
-import Login from "./pages/Login";
-import Favorites from "./pages/Favorites";
-import Loader from "./components/Loader";
-import { useSelector } from "react-redux";
+
+import {
+  HashRouter,
+  Routes,
+  Route
+} from 'react-router-dom'
+import './App.css'
+import Navbar from './components/Navbar';
+import Home from './pages/Home';
+import ProductDetail from './pages/ProductDetail';
+import Login from './pages/Login';
+import Purchase from './pages/Purchase';
+import { isLoadingSlice } from './store/slices/isLoading.slice';
+import Loader from './components/Loader';
+import { useSelector } from 'react-redux';
 
 function App() {
-  const isLoading = useSelector( state => state.isLoading )
+  const isLoading = useSelector(state => state.isLoading)
   return (
     <HashRouter>
       <div className="App">
-        { isLoading && <Loader />}
+        {/* <Loader /> */}
+        {isLoading && <Loader />}
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/news/:id" element={<NewsDetail />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/favorites" element={<Favorites />} />
+          <Route path='/product/:id' element={<ProductDetail />} />
+          <Route path='/login/' element={<Login />} />
+          <Route path='/purchase/' element={<Purchase />} />
         </Routes>
       </div>
     </HashRouter>
