@@ -1,0 +1,121 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.title{
+    margin: 2rem;
+    text-align: center;
+}
+.img_descri{
+    margin: 2rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+.img_btn{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    width: auto;
+    height: auto;
+    max-width: 40px;
+    max-height: 45px;
+}
+.img{
+    padding: 20px;
+    width: auto;
+    height: auto;
+    max-width: 270px;
+    max-height: 270px;
+}
+.img_mini{
+    padding: 10px;
+    width: auto;
+    height: auto;
+    max-width: 100px;
+    max-height: 100px;
+}
+.mini_img{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.img_mini:hover{
+    border: 1px solid black;
+}
+.container_column{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+}
+.descri{
+    padding: 2rem;
+    font-size: 12px;
+}
+.container_quatity_price{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.container_price{
+    padding: 2rem;
+    width: 50%;
+    margin-left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items:baseline;
+    justify-content: left;
+}
+.container_quatity{
+    width: 50%;
+}
+.quatity{
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+    justify-content: left;
+}
+.btn_qua{
+    width: auto;
+    height: auto;
+    max-width: 30px;
+    max-height: 30px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.txt_qua{
+    padding: 10px;
+    margin-top: 9px;
+    font-size: 20px;
+    color: black;
+}
+.btn_add{
+    width: 100%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    color: white;
+}
+.add_text{
+    margin-top: 11px;
+    color: white;
+    text-transform: capitalize;
+    font-size: 25px;
+}
