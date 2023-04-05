@@ -40,7 +40,8 @@ const ProductDetail = () => {
                 }
               }}
             >
-              <i className='bx bxs-chevrons-left bx-sm'></i>
+              {/* <i className='bx bxs-chevrons-left bx-sm'></i> */}
+              <i className='bx bxs-chevron-left-circle bx-sm'></i>
             </Button>
           }
           <img className="img" src={detail.images?.[btn_i].url} />
