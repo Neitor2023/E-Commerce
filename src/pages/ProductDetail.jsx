@@ -5,7 +5,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import './ProductDetail.css'
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { filterCategoriesThunk } from "../store/slices/products.slice";
 
 const ProductDetail = () => {
@@ -27,9 +27,15 @@ const ProductDetail = () => {
       .catch(error => console.error(error))
   }, [])
 
-  const dispatch = useDispatch(filterCategoriesThunk(detail.categoryId))
-  //categoryId
+  // const dispatch = useDispatch(filterCategoriesThunk(detail.categoryId))
+  const dispatch = useDispatch()
+  const products = useSelector(state => state.products)
+  // dispatch(filterCategoriesThunk(detail.categoryId))
 
+  //categoryId
+  console.log("Category ", detail.categoryId)
+  // console.log("nombre ",products) 
+  //?.[0].category?.name)
   return (
     <div>
       <div className="title">
@@ -116,7 +122,7 @@ const ProductDetail = () => {
       <Card style={{ width: '18rem' }}>
         <Card.Img variant="top" src="holder.js/100px180" />
         <Card.Body>
-          <Card.Title>{products.name} </Card.Title>
+          <Card.Title>{products[0].category.name} </Card.Title>
           <Card.Text>
             Some quick example text to build on the card title and make up the
             bulk of the card's content.
