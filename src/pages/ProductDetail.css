@@ -4,9 +4,101 @@
     box-sizing: border-box;
 }
 
+.container_0_column{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 .title{
     margin: 2rem;
     text-align: center;
+}
+.container_1_row{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.container2_left_column{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.container3_row{
+    width: 500px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.container4_arrow_left{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.container4_img01_center{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.container4_arrow_right{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.container2_right_column{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.container5_arrow{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.container6_column{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.container7_brand_left{
+    padding: 2rem;
+    font-size: 12px;   
+}
+.discover{
+    width: 100%;
+    margin: 2rem;
+    text-align: center;
+}
+.price_quantity_row{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.price_column{
+    /* padding: 2rem; */
+    width: 50%;
+    margin-left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items:baseline;
+    justify-content: left;
+}
+.quantity_column{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 .img_descri{
     margin: 2rem;
