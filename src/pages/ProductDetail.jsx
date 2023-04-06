@@ -1,6 +1,9 @@
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-
+import { Link } from 'react-router-dom';
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -19,27 +22,39 @@ const ProductDetail = () => {
 
   // dispatch = useDispatch(state.action.filterCategoriesThunk())
   // dispatch(filterCategoriesThunk(category.id))
-
-  useEffect(() => {
-    axios
-      .get(`https://e-commerce-api-v2.academlo.tech/api/v1/products/${id}`)
-      .then(resp => setDetail(resp.data))
-      .catch(error => console.error(error))
-  }, [])
-
-  // const dispatch = useDispatch(filterCategoriesThunk(detail.categoryId))
   const dispatch = useDispatch()
   const products = useSelector(state => state.products)
-  // dispatch(filterCategoriesThunk(detail.categoryId))
+
+  useEffect(() => {
+    console.log("id ", typeof (Number(id)), " ", id)
+    axios
+      .get(`https://e-commerce-api-v2.academlo.tech/api/v1/products/${Number(id)}`)
+      .then(resp => setDetail(resp.data))
+      .catch(error => console.error(error))
+    dis()
+  }, [id])
+
+  const dis = () => {
+    console.log("Category DB ", detail) // .categoryId)
+    console.log("Category ID ", detail.categoryId) // .categoryId)    
+    // console.log("Category ", detail.category?.categoryId) // .categoryId)
+    dispatch(filterCategoriesThunk(detail.categoryId))
+    console.log("Products ", products)
+  }
+
+  // dis()
+
+  // const dispatch = useDispatch(filterCategoriesThunk(detail.categoryId))
+
 
   //categoryId
-  console.log("Category ", detail.categoryId)
   // console.log("nombre ",products) 
   //?.[0].category?.name)
   return (
     <div>
       <div className="title">
         <h1>{detail.title}</h1>
+        <h2>{detail.categoryId}</h2>
       </div>
       <div className="img_descri">
         <div>
@@ -61,6 +76,7 @@ const ProductDetail = () => {
               <i className='bx bxs-chevron-left-circle bx-lg'></i>
             </button>
           }
+          <p>{detail[0]?.category.name}</p>
           <img className="img" src={detail.images?.[btn_i].url} />
           {swBntRight &&
             <button
@@ -119,18 +135,48 @@ const ProductDetail = () => {
       </div>
       <br />
 
-      <Card style={{ width: '18rem' }}>
+      {/* <Card style={{ width: '18rem' }}>
         <Card.Img variant="top" src="holder.js/100px180" />
         <Card.Body>
-          <Card.Title>{products[0].category.name} </Card.Title>
+          <Card.Title>{products[0]?.category.id} </Card.Title>
           <Card.Text>
             Some quick example text to build on the card title and make up the
             bulk of the card's content.
           </Card.Text>
           <Button variant="primary">Go somewhere</Button>
         </Card.Body>
-      </Card>
+      </Card> */}
 
+      <Container>
+        <Row xs={1} md={2} lg={3} className='py-3'>
+          {products.map(product => (
+            <Col className='mb-3' key={product.id}>
+              <Card >
+                <Card.Img
+                onClick={()=>`/product/${product.id}`}
+                    // as={Link}
+                    // to={`/product/${product.id}`}
+                
+                  variant="top"
+                  src={product.images[0].url}
+                  style={{ height: 200 }} // , objectFit: "cover"
+                />
+                <Card.Body>
+                  <Card.Text>
+                    {product.brand}
+                  </Card.Text>
+                  <Card.Title>{product.title}</Card.Title>
+                  <Button
+                    as={Link}
+                    to={`/product/${product.id}`}
+                    variant="primary">Ver detalle</Button>
+                </Card.Body>
+              </Card>
+            </Col>
+          ))
+          }
+        </Row>
+      </Container>
     </div>
   );
 };
