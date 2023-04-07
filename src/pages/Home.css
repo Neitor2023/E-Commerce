@@ -1,0 +1,69 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.from_to_column{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.container0_row{
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: center;
+}
+
+.container1_left_column{
+    margin-top: 16px;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items:start;
+    justify-content:center ;
+}
+.btn_price{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.txt{
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+}
+.bx{
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: right;
+}
+
+.input_from{
+    padding: 0.5rem;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-indent: 1rem;
+    justify-content: space-between;
+}
+.label{
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: left;
+}
+.input{
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    justify-content: right;
+}
