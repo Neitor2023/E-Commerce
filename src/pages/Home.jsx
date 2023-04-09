@@ -20,7 +20,6 @@ const Home = () => {
   const [isFromTo, setIsFromTo] = useState(false)
   useEffect(() => {
     dispatch(getProductsThunk())
-
     axios
       .get("https://e-commerce-api-v2.academlo.tech/api/v1/categories")
       .then(resp => setCategories(resp.data))
@@ -70,8 +69,8 @@ const Home = () => {
             </InputGroup>
           </Col>
         </Row>
-        <Row>
-          <Col>
+        <div className='pri'>
+          <div className='price_btns'>
             <Button
               className='btn_price'
               onClick={() => setIsFromTo(!isFromTo)}
@@ -86,8 +85,6 @@ const Home = () => {
                 </div>
               </div>
             </Button>
-          </Col>
-          <Col>
             {isFromTo &&
               <div className='input_from'>
                 <label htmlFor="">From: </label>
@@ -98,12 +95,8 @@ const Home = () => {
                 <Button>Filter</Button>
               </div>
             }
-          </Col>
-          <Col>
-          </Col>
-          <Col>
-          </Col>
-        </Row>
+          </div>
+        </div>
         <Row xs={1} md={2} lg={3} className='py-3'>
           {products.map(product => (
             <Col className='mb-3' key={product.id}>

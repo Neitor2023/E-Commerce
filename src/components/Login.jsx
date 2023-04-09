@@ -11,11 +11,22 @@ const Login = () => {
     e.preventDefaultd
   }
   return (
-    <div>
+    <div className="container">
       <form
         className="login"
         onSubmit={e => login(e)}>
-        <h1>Login</h1>
+        <h4 className="capitalize">Welcome! Enter yuor email and password to continue</h4>
+        <br />
+        <div className="test_data">
+          <h5 className="capitalize"> <strong> Test data</strong></h5>
+          <div className="test">
+            <i className='bx bx-envelope bx-sm'></i>romy@gmail.com
+          </div>
+          <div className="test">
+            <i className='bx bx-lock-alt bx-sm'></i>romy123
+          </div>
+        </div>
+        <br />
         <div className="form-group">
           <label htmlFor="email">Email:</label>
           <input
@@ -25,6 +36,7 @@ const Login = () => {
             name="email"
             value={email}
             onChange={e => setEmail(e.target.value)}
+            placeholder="Enter your email"
           />
         </div>
         <div>
@@ -36,9 +48,10 @@ const Login = () => {
             name="password"
             value={password}
             onChange={e => setPassword(e.target.value)}
-            placeholder="Enter your email"
+            placeholder="Enter your password"
           />
         </div>
+        <br />
         <div>
           <button
             type="submit"

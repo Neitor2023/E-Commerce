@@ -5,13 +5,32 @@
     width: 100%;
 }
 
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    
+}
+
 .login{
+    padding: 17px;
     position: absolute;
     border: 1px solid #e1e1e1;
     border-radius: 5px;
-    width: 300px;
-    padding: 17px;
-    top: 50%;
+    width: 350px;
+    /* top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); */
+}
+.test_data{
+    background-color: #d8f5fd;
+}
+.capitalize{
+    text-transform: capitalize;
+}
+.test{
+    width: 100px;
+    display: flex;
+    flex-direction: row;
 }
