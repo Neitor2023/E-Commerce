@@ -8,7 +8,7 @@ import './App.css'
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import ProductDetail from './pages/ProductDetail';
-import Login from './pages/Login';
+import Login from './components/Login';
 import Purchase from './pages/Purchase';
 import { isLoadingSlice } from './store/slices/isLoading.slice';
 import Loader from './components/Loader';
