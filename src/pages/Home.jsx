@@ -7,6 +7,7 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import { useSelector, useDispatch } from 'react-redux';
 import { getProductsThunk, filterCategoriesThunk, filterTitleThunk } from '../store/slices/products.slice';
+// import { getProductsThunk, filterCategoriesThunk, filterTitleThunk, filterFromToThunk } from '../store/slices/products.slice';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -15,11 +16,13 @@ import './Home.css'
 const Home = () => {
   const dispatch = useDispatch()
   const products = useSelector(state => state.products)
+  const setProducts = useSelector(state => state.setProducts)
   const [categories, setCategories] = useState([])
   const [inputSearch, setInputSearch] = useState("")
   const [isFromTo, setIsFromTo] = useState(false)
   const [from, setFrom ] = useState(0)
   const [to, setTo ] = useState(0)
+
   useEffect(() => {
     dispatch(getProductsThunk())
     axios
@@ -28,6 +31,13 @@ const Home = () => {
       .catch(error => console.error(error))
 
   }, [])
+
+  const filterFromTo = (from,to) =>{
+    let result = products.filter(product => product.price >= from && product.price <= to )
+    // console.log("result ",result)
+    // setProducts(result)
+    
+  }
 
   return (
     <div>
@@ -92,16 +102,19 @@ const Home = () => {
                 <label htmlFor="">From: </label>
                 <input
                 value={from}
-                type="text" />
+                type="text"
                 onChange={e => setFrom(e.target.value)}
+                />
                 <label htmlFor="">To: </label>
                 <input 
                 value={to}
-                type="text" />
+                type="text" 
                 onChange={e => setTo(e.target.value)}
+                />
                 <br />
                 <Button
-                onClick={() => dispatch(filterFromToThunk(from,to))}
+                onClick={() => filterFromTo(from,to)}
+                // onClick={() => dispatch(filterFromToThunk(from,to))}
                 >Filter</Button>
               </div>
             }
