@@ -1,11 +1,5 @@
-body{
-  background-color: black;
-}
-.h1{
-  color: yellow;
-}
-
 .lds-hourglass {
+  background-color: black;
   display: inline-block;
   position: relative;
   width: 80px;

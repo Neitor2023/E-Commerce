@@ -10,7 +10,7 @@ import Home from './pages/Home';
 import ProductDetail from './pages/ProductDetail';
 import Login from './components/Login';
 import Purchase from './pages/Purchase';
-import { isLoadingSlice } from './store/slices/isLoading.slice';
+// import { isLoading } from './store/slices/isLoading.slice';
 import Loader from './components/Loader';
 import { useSelector } from 'react-redux';
 

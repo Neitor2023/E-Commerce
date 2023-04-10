@@ -18,6 +18,8 @@ const Home = () => {
   const [categories, setCategories] = useState([])
   const [inputSearch, setInputSearch] = useState("")
   const [isFromTo, setIsFromTo] = useState(false)
+  const [from, setFrom ] = useState(0)
+  const [to, setTo ] = useState(0)
   useEffect(() => {
     dispatch(getProductsThunk())
     axios
@@ -88,11 +90,19 @@ const Home = () => {
             {isFromTo &&
               <div className='input_from'>
                 <label htmlFor="">From: </label>
-                <input type="text" />
+                <input
+                value={from}
+                type="text" />
+                onChange={e => setFrom(e.target.value)}
                 <label htmlFor="">To: </label>
-                <input type="text" />
+                <input 
+                value={to}
+                type="text" />
+                onChange={e => setTo(e.target.value)}
                 <br />
-                <Button>Filter</Button>
+                <Button
+                onClick={() => dispatch(filterFromToThunk(from,to))}
+                >Filter</Button>
               </div>
             }
           </div>
