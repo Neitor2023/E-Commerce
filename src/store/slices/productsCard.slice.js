@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-
+import getConfig from '../../utils/getConfig'
 export const productsCardSlice = createSlice({
 	name: 'productsCard',
     initialState: [],
@@ -13,8 +13,9 @@ export const productsCardSlice = createSlice({
 
 export const getProductsCardThunk = () => dispatch =>{
 
-    axios.get("https://e-commerce-api-v2.academlo.tech/api/v1/cart")
-    .then(resp => dispatch(setProducts(resp.data)))
+    axios.get("https://e-commerce-api-v2.academlo.tech/api/v1/cart", getConfig())
+    .then(resp => console.log((resp.data)))
+    // .then(resp => dispatch(setProducts(resp.data)))
     .catch(error => console.error(error))
 
 }
