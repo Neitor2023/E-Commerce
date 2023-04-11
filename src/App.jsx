@@ -1,47 +1,29 @@
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import { useForm } from "react-hook-form";
+import "./styles.css";
+import { HashRouter, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import ProductDetail from "./pages/ProductDetail";
+import Login from "./components/Login"
+import Purchase from "./pages/Purchase";
+import Loader from "./components/Loader";
+import { useSelector } from "react-redux";
 
-const Login = () => {
-  const { register, handleSubmit } = useForm();
-
-  const submit = (data) => {
-    console.log(data);
-  };
-
+function App() {
+  const isLoading = useSelector( state => state.isLoading )
   return (
-    <Form
-      style={{
-        maxWidth: 500,
-        margin: "1rem auto",
-        border: "1px solid black",
-        padding: "1rem"
-      }}
-      onSubmit={handleSubmit(submit)}
-    >
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control
-          type="email"
-          placeholder="Enter email"
-          {...register("email")}
-        />
-      </Form.Group>
-
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control
-          type="password"
-          placeholder="Password"
-          {...register("password")}
-        />
-      </Form.Group>
-
-      <Button variant="primary" type="submit">
-        Iniciar sesión
-      </Button>
-    </Form>
+    <HashRouter>
+      <div className="App">
+        { isLoading && <Loader />}
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/product/:id" element={<ProductDetail />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/purchase" element={<Purchase />} />
+        </Routes>
+      </div>
+    </HashRouter>
   );
-};
+}
 
-export default Login;
+export default App;

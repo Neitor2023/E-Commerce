@@ -4,7 +4,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
-import Sidebar from './Sidebar'
+import FavoriteSidebar from './FavoritesSidebar'
 
 const NavBar = () => {
     const [ show, setShow ] = useState(false)
@@ -26,7 +26,7 @@ const NavBar = () => {
             </Nav>
             </Container>
         </Navbar>
-        <Sidebar
+        <FavoriteSidebar
         show={ show }
         handleClose={ handleClose }
         />
@@ -35,24 +35,3 @@ const NavBar = () => {
 }
 
 export default NavBar;
-// import Container from 'react-bootstrap/Container';
-// import Nav from 'react-bootstrap/Nav';
-// import Navbar from 'react-bootstrap/Navbar';
-// import { Link } from 'react-router-dom';
-
-// const NavBar = () => {
-//   return (
-//     <Navbar bg="dark" variant="dark">
-//       <Container>
-//         <Navbar.Brand as={Link} to="/" >So cheap app</Navbar.Brand>
-//         <Nav className="me-auto">
-//           <Nav.Link as={Link} to="/login" >Login</Nav.Link>
-//           <Nav.Link as={Link} to="/purchase" >Purchase</Nav.Link>
-//           <Nav.Link >Pricing (sidebar)</Nav.Link>
-//         </Nav>
-//       </Container>
-//     </Navbar>
-//   );
-// };
-
-// export default NavBar;

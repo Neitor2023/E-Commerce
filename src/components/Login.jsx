@@ -1,65 +1,46 @@
-import { useState } from "react";
-import './login.css'
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import { useForm } from "react-hook-form";
 
 const Login = () => {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const { register, handleSubmit } = useForm();
 
-  const login = e => {
-    console.log("email ", email)
-    console.log("password ", password)
-    e.preventDefaultd
-  }
+  const submit = (data) => {
+    console.log(data);
+  };
+
   return (
-    <div className="container">
-      <form
-        className="login"
-        onSubmit={e => login(e)}>
-        <h4 className="capitalize">Welcome! Enter yuor email and password to continue</h4>
-        <br />
-        <div className="test_data">
-          <h5 className="capitalize"> <strong> Test data</strong></h5>
-          <div className="test">
-            <i className='bx bx-envelope bx-sm'></i>romy@gmail.com
-          </div>
-          <div className="test">
-            <i className='bx bx-lock-alt bx-sm'></i>romy123
-          </div>
-        </div>
-        <br />
-        <div className="form-group">
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            className="form-control"
-            id="email"
-            name="email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-            placeholder="Enter your email"
-          />
-        </div>
-        <div>
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            className="form-control"
-            id="password"
-            name="password"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-            placeholder="Enter your password"
-          />
-        </div>
-        <br />
-        <div>
-          <button
-            type="submit"
-            className="btn btn-primary btn-block"
-          >Enviar</button>
-        </div>
-      </form>
-    </div>
+    <Form
+      style={{
+        maxWidth: 500,
+        margin: "1rem auto",
+        border: "1px solid black",
+        padding: "1rem"
+      }}
+      onSubmit={handleSubmit(submit)}
+    >
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Label>Email address</Form.Label>
+        <Form.Control
+          type="email"
+          placeholder="Enter email"
+          {...register("email")}
+        />
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Label>Password</Form.Label>
+        <Form.Control
+          type="password"
+          placeholder="Password"
+          {...register("password")}
+        />
+      </Form.Group>
+
+      <Button variant="primary" type="submit">
+        Iniciar sesión
+      </Button>
+    </Form>
   );
 };
 
