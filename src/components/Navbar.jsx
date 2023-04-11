@@ -16,13 +16,13 @@ const NavBar = () => {
         <>
         <Navbar bg="primary" variant="dark">
             <Container>
-            <Navbar.Brand as={Link} to="/">News App</Navbar.Brand>
+            <Navbar.Brand as={Link} to="/">New App</Navbar.Brand>
             <Nav className="me-auto">
                 <Nav.Link as={Link} to="/login">Login</Nav.Link>
-                <Nav.Link as={Link} to="/favorites">Favorites</Nav.Link>
+                <Nav.Link as={Link} to="/purchase">Purchase</Nav.Link>
                 <Nav.Link 
                 onClick={ () => setShow(true) }
-                >Favorites (sidebar)</Nav.Link>
+                >Purchase (sidebar)</Nav.Link>
             </Nav>
             </Container>
         </Navbar>

@@ -2,14 +2,18 @@ import { Navigate, Outlet } from 'react-router-dom';
 
 const ProtectedRoutes = () => {
 
-    const token = localStorage.getitem("token")
-		// Aquí va la condición. Puede ser una condición de cualquier tipo. Lo que 
-		// Importa es que valide si el usuario está loggeado o no
-    if(token){
+	const token = localStorage.getItem("token")
+    //null -> No hay token
+    //"dfghnjmk,l.ñ-" -> hay token
+
+
+    if( token ){
+        // token = "dfghnjmk,l.ñ-"
         return <Outlet />
     } else { 
-        return <Navigate to='/login_X' />
-    }                     // Aquí le debemos decir la ruta a la que queremos llevar
-};                        // al usuario si no está autenticado
+        // token = null
+        return <Navigate to='/login' />
+    }                   
+}
 
 export default ProtectedRoutes;
