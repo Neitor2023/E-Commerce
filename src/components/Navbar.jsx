@@ -16,7 +16,7 @@ const NavBar = () => {
         <>
         <Navbar bg="primary" variant="dark">
             <Container>
-            <Navbar.Brand as={Link} to="/">New App</Navbar.Brand>
+            <Navbar.Brand as={Link} to="/">So cheap App</Navbar.Brand>
             <Nav className="me-auto">
                 <Nav.Link as={Link} to="/login">Login</Nav.Link>
                 <Nav.Link as={Link} to="/purchase">Purchase</Nav.Link>
