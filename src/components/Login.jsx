@@ -3,6 +3,7 @@ import Form from "react-bootstrap/Form";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import './login.css'
 
 const Login = () => {
   const { register, handleSubmit } = useForm();
@@ -37,7 +38,23 @@ const Login = () => {
       onSubmit={handleSubmit(submit)}
     >
       <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
+        <Form.Label>
+          <h5 className="capitalize">
+            Welcome! Enter yuor email and password to continue
+          </h5>
+          <br />
+          <div className="test_data">
+            <h5 className="capitalize"> <strong> Test data</strong></h5>
+            <div className="test">
+              <i className='bx bx-envelope bx-sm'></i>romy@gmail.com
+            </div>
+            <div className="test">
+              <i className='bx bx-lock-alt bx-sm'></i>romy123
+            </div>
+          </div>
+          <br />
+
+          Email address</Form.Label>
         <Form.Control
           type="email"
           placeholder="Enter email"

@@ -1,5 +1,5 @@
-.container_loader {
-  background: radial-gradient(circle at center, #D5F3FF 0, #8eff8b 100%);
+.loader {
+  background: radial-gradient(circle at center, #D5F3FF 0, #2a78ee 100%);  
   opacity: 0.65;
   position: fixed;
   width: 100%;
@@ -12,10 +12,9 @@
 }
 
 .lds-hourglass {
-  /* background-color: black; */
-  background: radial-gradient(circle at center, #D5F3FF 0, #8eff8b 100%);  
+  background-color: black;
   display: inline-block;
-  position: relative;
+  position: absolute; 
   width: 80px;
   height: 80px;
 }
@@ -25,7 +24,7 @@
   border-radius: 50%;
   width: 0;
   height: 0;
-  margin: 8px;
+  margin: 10%;
   box-sizing: border-box;
   border: 32px solid #fff;
   border-color: #fff transparent #fff transparent;

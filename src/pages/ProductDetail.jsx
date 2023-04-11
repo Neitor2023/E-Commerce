@@ -10,6 +10,7 @@ import { useParams } from "react-router-dom";
 import './ProductDetail.css'
 import { useDispatch, useSelector } from "react-redux";
 import { filterCategoriesThunk } from "../store/slices/products.slice";
+import { setIsLoading } from '../store/slices/isLoading.slice'
 
 const ProductDetail = () => {
   const { id } = useParams()
@@ -24,6 +25,7 @@ const ProductDetail = () => {
   const products = useSelector(state => state.products)
 
   useEffect(() => {
+    dispatch( setIsLoading( true ) )
     axios
       .get(`https://e-commerce-api-v2.academlo.tech/api/v1/products/${id}`)
       .then(resp => {
@@ -31,6 +33,7 @@ const ProductDetail = () => {
         setIdCategory(resp.data.categoryId)
       })
       .catch(error => console.error(error))
+      .finally( () =>  dispatch( setIsLoading( false ) ) )
   }, [id])
 
   useEffect(() => {
