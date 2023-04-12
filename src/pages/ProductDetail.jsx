@@ -11,6 +11,8 @@ import './ProductDetail.css'
 import { useDispatch, useSelector } from "react-redux";
 import { filterCategoriesThunk } from "../store/slices/products.slice";
 import { setIsLoading } from '../store/slices/isLoading.slice'
+import { createProductsCardThunk } from '../store/slices/productsCard.slice';
+
 
 const ProductDetail = () => {
   const { id } = useParams()
@@ -39,6 +41,14 @@ const ProductDetail = () => {
   useEffect(() => {
     dispatch(filterCategoriesThunk(idCategory))
   }, [detail.categoryId])
+
+  const addProduct = () => {
+    const data ={
+        quantity: quatity,
+        productId: id
+    }
+    dispatch(createProductsCardThunk(data))
+  }
 
   return (
     <div>
@@ -133,7 +143,10 @@ const ProductDetail = () => {
               </div>
             </div>
             <div className="btn_add">
-            <button className="btn_add">
+            <button
+            className="btn_add"
+            onClick={addProduct}
+            >
               <h2 className="add_text">Add to Card  </h2><i className='bx bx-cart-add bx-md'></i>
             </button>
           </div>            

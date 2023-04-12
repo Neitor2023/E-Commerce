@@ -6,8 +6,8 @@ import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import { useSelector, useDispatch } from 'react-redux';
-import { getProductsThunk, filterCategoriesThunk, filterTitleThunk } from '../store/slices/products.slice';
-// import { getProductsThunk, filterCategoriesThunk, filterTitleThunk, filterFromToThunk } from '../store/slices/products.slice';
+// import { getProductsThunk, filterCategoriesThunk, filterTitleThunk } from '../store/slices/products.slice';
+import { getProductsThunk, filterCategoriesThunk, filterTitleThunk, filterFromToThunk } from '../store/slices/products.slice';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -113,8 +113,9 @@ const Home = () => {
                 />
                 <br />
                 <Button
-                onClick={() => filterFromTo(from,to)}
-                // onClick={() => dispatch(filterFromToThunk(from,to))}
+                // onClick={() => 
+                // filterFromTo(from,to)}
+                onClick={() => dispatch(filterFromToThunk(from,to))}
                 >Filter</Button>
               </div>
             }
