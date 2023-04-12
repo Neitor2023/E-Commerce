@@ -31,16 +31,62 @@ const Sidebar = ({ show, handleClose }) => {
         // .then(() => dispatch(getProductsCardThunk()))
         // .catch(error => console.error(error))
     }
+    
+    const [quant_obj, setQuant_obj ] = useState([
+        productsCard.map(item => {
+{
+
+    Id: item.id,
+    productId: item.product?.id,
+    quantity: item.quantity
+    
+}
+        })
+    ]);
+    // useEffect(()=>{
+
+    //     setQuant_obj(
+    //         productsCard.map(item => {
+    //             return {
+    //                 Id: item.id,
+    //                 productId: item.product?.id,
+    //                 quantity: item.quantity
+    //             }
+    //         }))
+    //     },[])
+console.log("quant_obj", quant_obj)
+//  console.log("productsCard",productsCard)
+    // const fillObj = () => {
+
+    //     const options = seleData.results?.map(item => {
+    //         return {
+    //             value: item.id,
+    //             label: item.name
+    //         }
+    //     })
+    
+        
+    //     {productsCard.map(item => (
+    //         let quant_obj = {
+    //             Id: item.id,
+    //             productId: item.product?.id,
+    //             quantity: item.quantity
+    //         }
+    //     ))
+    //     }
+    // }
+    // fillObj()
     return (
         <Offcanvas show={show} onHide={handleClose} placement={"end"}>
             <Offcanvas.Header closeButton>
                 <Offcanvas.Title>Carrito de Compra</Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body>
+                <ul>
                     {productsCard.map(item => (
                         // setQuantityCard(item.product?.quantity)
                         // ,
-                        <div key={item.id}>
+                        <li key={item.id}>
                             <img src={item.product?.images[0].url} style={{ width: 80, objectFit: "contain" }} alt="" />
                             {item.product?.title}
                             {item.quantity}
@@ -63,13 +109,17 @@ const Sidebar = ({ show, handleClose }) => {
                                 quantityCard={Quamtity=> Quantit(Quamtity)}
                             />
                             */}
-                        </div>
+                        </li>
+                        
+                        
                     ))
                     }
+                </ul>
                 <Button
                     onClick={() => dispatch(checkoutProductsCardThunk())}
                 >Checkout</Button>
                 <br />
+
             </Offcanvas.Body>
         </Offcanvas>
     );
