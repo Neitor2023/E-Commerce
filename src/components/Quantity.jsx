@@ -1,12 +1,14 @@
 import { useState } from "react";
 import Button from 'react-bootstrap/Button';
 
-const Quantity = ({Quantity, quantityCard}) => {
+const Quantity = ({IdProduct, Quantity}) => {
     const [quantityCard, setQuantityCard ] = useState(Quantity)
     return (
         <div>
             <Button
-            onClick={()=> setQuantityCard(quantityCard+1)}
+            onClick={()=> {
+                setQuantityCard(quantityCard+1)
+            }}
             // onClick={setQuantityCard(quantityCard+1)}
             >+</Button>
             {quantityCard}
