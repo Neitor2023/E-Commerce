@@ -8,28 +8,59 @@ import axios from 'axios';
 import getConfig from '../utils/getConfig'
 
 const Sidebar = ({ show, handleClose }) => {
-    const [quant_obj, setQuant_obj ] = useState({
-        quantity: '',
-        productId: ''
-    })
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(getProductsCardThunk())
     }, [])
     const productsCard = useSelector(state => state.productsCard)
-    const Quantit = () => {
-        alert("llegue")
+    const Quantit = (id_op, id, Qua) => {
+        // console.log("Qua ",Qua)
+        console.log("id_op, id, Qua ",id_op, id, Qua)
+        // const quant_obj ={
+        //     Id: '',
+        //     productId: '',
+        //     quantity: ''    
+        // }
         // dispatch(createProductsCardThunk(data))
-        //     const data ={
-        //         quantity: Quant,
-        //         productId: id
-        //     }
+            // const data ={
+            //     quantity: Qua,
+            // }
 
-        // axios
-        // .put(`https://e-commerce-api-v2.academlo.tech/api/v1/cart/${id}`,data, getConfig())
+        // axios                 
+        // .put(`https://e-commerce-api-v2.academlo.tech/api/v1/cart/${id_op}`,data, getConfig())
         // .then(() => dispatch(getProductsCardThunk()))
         // .catch(error => console.error(error))
     }
+    
+    const [quant_obj, setQuant_obj ] = useState(
+    productsCard.map(item => {
+        return {
+            Id: item.id,
+            productId: item.product?.id,
+            quantity: item.quantity
+        }
+    }))
+//  console.log("quant_obj", quant_obj)
+    // const fillObj = () => {
+
+    //     const options = seleData.results?.map(item => {
+    //         return {
+    //             value: item.id,
+    //             label: item.name
+    //         }
+    //     })
+    
+        
+    //     {productsCard.map(item => (
+    //         let quant_obj = {
+    //             Id: item.id,
+    //             productId: item.product?.id,
+    //             quantity: item.quantity
+    //         }
+    //     ))
+    //     }
+    // }
+    // fillObj()
     return (
         <Offcanvas show={show} onHide={handleClose} placement={"end"}>
             <Offcanvas.Header closeButton>
@@ -45,14 +76,16 @@ const Sidebar = ({ show, handleClose }) => {
                             {item.product?.title}
                             {item.quantity}
                             {/* {item.productId} */}
-                            {/* {item.product?.id} */}
+                            Id Product
+                            {item.product?.id}
                             {/* {item.product?.description} */}
                             <br />
                             <Button
-                            onClick={()=> Quantit()}
+                            onClick={()=> Quantit(item.id, item.product?.id, (item.quantity+1))}
                             >+</Button>
-                            {quantityCard}
-                            {item.product?.quantity}
+                            {/* {quantityCard} */}
+                            {/* {item.product?.quantity} */}
+                            {item.quantity}
                             <Button>-</Button>
                             {/* 
                             <Quantity
