@@ -8,13 +8,16 @@ import axios from 'axios';
 import getConfig from '../utils/getConfig'
 
 const Sidebar = ({ show, handleClose }) => {
-
+    const [quant_obj, setQuant_obj ] = useState({
+        quantity: '',
+        productId: ''
+    })
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(getProductsCardThunk())
     }, [])
     const productsCard = useSelector(state => state.productsCard)
-    const Quantit = (Quant, id) => {
+    const Quantit = () => {
         alert("llegue")
         // dispatch(createProductsCardThunk(data))
         //     const data ={
@@ -45,17 +48,22 @@ const Sidebar = ({ show, handleClose }) => {
                             {/* {item.product?.id} */}
                             {/* {item.product?.description} */}
                             <br />
-
-                            {/* <Button>+</Button> */}
-                            {/* {quantityCard} */}
-                            {/* {item.product?.quantity} */}
-                            {/* <Button>-</Button> */}
+                            <Button
+                            onClick={()=> Quantit()}
+                            >+</Button>
+                            {quantityCard}
+                            {item.product?.quantity}
+                            <Button>-</Button>
+                            {/* 
                             <Quantity
                                 IdProduct={item.product?.id}
                                 Quantity={item.quantity}
-                            // quantityCard={Quamtity=> Quantit(Quamtity)}
+                                quantityCard={Quamtity=> Quantit(Quamtity)}
                             />
+                            */}
                         </li>
+                        
+                        
                     ))
                     }
                 </ul>
