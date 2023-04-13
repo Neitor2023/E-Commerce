@@ -18,8 +18,8 @@ const Home = () => {
   const [categories, setCategories] = useState([])
   const [inputSearch, setInputSearch] = useState("")
   const [isFromTo, setIsFromTo] = useState(false)
-  const [from, setFrom ] = useState(0)
-  const [to, setTo ] = useState(0)
+  const [from, setFrom] = useState(0)
+  const [to, setTo] = useState(0)
 
   useEffect(() => {
     dispatch(getProductsThunk())
@@ -29,6 +29,15 @@ const Home = () => {
       .catch(error => console.error(error))
 
   }, [])
+
+  const addProductHome = () => {
+    const data ={
+        quantity: quatity,
+        productId: id
+    }
+    dispatch(createProductsCardThunk(data))
+  }
+
 
   return (
     <div>
@@ -92,19 +101,19 @@ const Home = () => {
               <div className='input_from'>
                 <label htmlFor="">From: </label>
                 <input
-                value={from}
-                type="text"
-                onChange={e => setFrom(e.target.value)}
+                  value={from}
+                  type="text"
+                  onChange={e => setFrom(e.target.value)}
                 />
                 <label htmlFor="">To: </label>
-                <input 
-                value={to}
-                type="text" 
-                onChange={e => setTo(e.target.value)}
+                <input
+                  value={to}
+                  type="text"
+                  onChange={e => setTo(e.target.value)}
                 />
                 <br />
                 <Button
-                onClick={() => dispatch(filterFromToThunk(from,to))}
+                  onClick={() => dispatch(filterFromToThunk(from, to))}
                 >Filter</Button>
               </div>
             }
@@ -113,7 +122,10 @@ const Home = () => {
         <Row xs={1} md={2} lg={3} className='py-3'>
           {products.map(product => (
             <Col className='mb-3' key={product.id}>
-              <Card >
+              <Card
+                as={Link}
+                to={`/product/${product.id}`}
+              >
                 <Card.Img
                   variant="top"
                   src={product.images[0].url}
@@ -127,7 +139,15 @@ const Home = () => {
                   <Button
                     as={Link}
                     to={`/product/${product.id}`}
-                    variant="primary">Ver detalle</Button>
+                    variant="primary">Ver detalle
+                  </Button>
+                  <Button
+            // className="btn_add"
+            // onClick={addProductHome}
+            >
+              <i className='bx bx-cart-add bx-md'></i>
+            </Button>
+
                 </Card.Body>
               </Card>
             </Col>
