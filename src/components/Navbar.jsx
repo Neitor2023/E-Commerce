@@ -32,7 +32,6 @@ const NavBar = () => {
             <Nav.Link as={Link} to="/login">Login</Nav.Link>
             <Nav.Link as={Link} to="/purchase">Purchase</Nav.Link>
             <Nav.Link
-              // onClick={() => setShow(true)}
               onClick={() => sideBarAction()}
             >Purchase (sidebar)</Nav.Link>
           </Nav>

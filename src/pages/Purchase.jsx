@@ -12,7 +12,7 @@ const Purchase = () => {
   }, [])
   
   return (
-    <div>
+    <div className="center">
       <h1>Purchase</h1>
         {productsCard.map(item => (
           <div 
@@ -33,9 +33,6 @@ const Purchase = () => {
             <div className="total_purchase">
             {item.product?.price * item.quantity}
             </div>
-            {/* {item.productId} */}
-            {/* {item.product?.id} */}
-            {/* {item.product?.description} */}
           </div>
         ))
         }

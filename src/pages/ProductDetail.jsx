@@ -1,7 +1,6 @@
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
 import axios from "axios";
@@ -131,12 +130,10 @@ const ProductDetail = () => {
                 <div className="quatity">
                 <button onClick={() => setQuatity(quatity + 1)} className="btn_qua">
                   <h2 className="txt_qua"> + </h2>
-                  {/* <i class='bx bx-message-square-add bx-sm'></i> */}
                 </button>
                 <h5 className="txt_qua"> {quatity} </h5>
                 <button onClick={() => quatity == 0 ? quatity : setQuatity(quatity - 1)} className="btn_qua">
                   <h2 className="txt_qua"> - </h2>
-                  {/* <i class='bx bx-message-square-minus bx-sm'></i> */}
                 </button>
               </div>                
                 </div>

@@ -3,7 +3,6 @@ import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProductsCardThunk, checkoutProductsCardThunk } from '../store/slices/productsCard.slice';
-import Quantity from './Quantity';
 import axios from 'axios';
 import getConfig from '../utils/getConfig'
 import './Sidebar.css'
@@ -38,10 +37,22 @@ const Sidebar = ({ show, handleClose }) => {
                 dispatch(getProductsCardThunk())
             })
             .catch(error => console.error(error))
-        setTimeout(() => {
-        }, "2000");
-
     }
+
+    const delet = (id_op, id, Qua) => {
+        console.log(id_op)
+        const data = {
+            quantity: Qua,
+        }
+        axios
+            .delete(`https://e-commerce-api-v2.academlo.tech/api/v1/cart/${id_op}`, getConfig())
+            .then(() => {
+                dispatch(getProductsCardThunk())
+            })
+            .catch(error => console.error(error))
+    }
+
+
     return (
         <Offcanvas show={show} onHide={handleClose} placement={"end"}>
             <Offcanvas.Header closeButton>
@@ -59,7 +70,9 @@ const Sidebar = ({ show, handleClose }) => {
                                     <div className='title'>
                                         {item.product?.title}
                                     </div>
-                                    <div className='dele'>
+                                    <div 
+                                    onClick={()=> delet(item.id)}                                    
+                                    className='dele'>
                                         <i className='bx bx-trash bx-sm'></i>
                                     </div>
                                 </div>

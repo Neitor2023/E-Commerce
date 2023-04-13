@@ -15,7 +15,6 @@ const Login = () => {
     axios
       .post("https://e-commerce-api-v2.academlo.tech/api/v1/users/login", data)
       .then((resp) => {
-        //localStorage.setItem("key", value)
         localStorage.setItem("token", resp.data.token);
         navigate("/");
       })

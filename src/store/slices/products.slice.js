@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { setIsLoading } from './isLoading.slice'
-import { useState } from 'react';
 
 export const productsSlice = createSlice({
     name: 'products',

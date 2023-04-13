@@ -6,7 +6,6 @@ import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import { useSelector, useDispatch } from 'react-redux';
-// import { getProductsThunk, filterCategoriesThunk, filterTitleThunk } from '../store/slices/products.slice';
 import { getProductsThunk, filterCategoriesThunk, filterTitleThunk, filterFromToThunk } from '../store/slices/products.slice';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -16,7 +15,6 @@ import './Home.css'
 const Home = () => {
   const dispatch = useDispatch()
   const products = useSelector(state => state.products)
-  const setProducts = useSelector(state => state.setProducts)
   const [categories, setCategories] = useState([])
   const [inputSearch, setInputSearch] = useState("")
   const [isFromTo, setIsFromTo] = useState(false)
@@ -31,13 +29,6 @@ const Home = () => {
       .catch(error => console.error(error))
 
   }, [])
-
-  const filterFromTo = (from,to) =>{
-    let result = products.filter(product => product.price >= from && product.price <= to )
-    // console.log("result ",result)
-    // setProducts(result)
-    
-  }
 
   return (
     <div>
@@ -113,8 +104,6 @@ const Home = () => {
                 />
                 <br />
                 <Button
-                // onClick={() => 
-                // filterFromTo(from,to)}
                 onClick={() => dispatch(filterFromToThunk(from,to))}
                 >Filter</Button>
               </div>
