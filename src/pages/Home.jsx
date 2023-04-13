@@ -6,7 +6,8 @@ import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import { useSelector, useDispatch } from 'react-redux';
-import { getProductsThunk, filterCategoriesThunk, filterTitleThunk, filterFromToThunk, createProductsCardThunk } from '../store/slices/products.slice';
+import { getProductsThunk, filterCategoriesThunk, filterTitleThunk, filterFromToThunk } from '../store/slices/products.slice';
+import { createProductsCardThunk } from '../store/slices/productsCard.slice';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -30,12 +31,12 @@ const Home = () => {
 
   }, [])
 
-  const addProductHome = () => {
-    const data = {
-      quantity: quatity,
-      productId: id
-    }
-    dispatch(createProductsCardThunk(data))
+  const addProductHome = (id) => {
+    // const data = {
+    //   quantity: 1,
+    //   productId: id
+    // }
+    // dispatch(createProductsCardThunk(data))
   }
 
 
@@ -143,11 +144,11 @@ const Home = () => {
                   </Button>
                   <button
                   className="btn_add_home"
-                  onClick={addProductHome}
+                  // onClick={()=> addProductHome(product.id)}
                   >
-                    <div className="img_card">
-                    Add. 
-                    </div>
+                    {/* <div className="img_card"> */}
+                    {/* <i className='bx bxs-cart-add bx-sm bx-fade-left'></i> */}
+                    {/* </div> */}
                   </button>
 
                 </Card.Body>
