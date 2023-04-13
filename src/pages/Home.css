@@ -79,3 +79,19 @@
     width: 100%;
     margin-left: 0;
 }
+.btn_add_home{
+    width: 40px;
+    height: 40px;
+    background-color: #436b97;
+    color: white;
+    border-radius: 50%;
+}
+
+.img_card{
+    background-color: aqua;
+    text-indent: 20;
+    margin-top: 17px;
+    margin-left: 300px;
+    display: grid;
+    place-items: right;
+}

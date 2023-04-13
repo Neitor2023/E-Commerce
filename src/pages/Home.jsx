@@ -6,7 +6,7 @@ import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import { useSelector, useDispatch } from 'react-redux';
-import { getProductsThunk, filterCategoriesThunk, filterTitleThunk, filterFromToThunk } from '../store/slices/products.slice';
+import { getProductsThunk, filterCategoriesThunk, filterTitleThunk, filterFromToThunk, createProductsCardThunk } from '../store/slices/products.slice';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -31,9 +31,9 @@ const Home = () => {
   }, [])
 
   const addProductHome = () => {
-    const data ={
-        quantity: quatity,
-        productId: id
+    const data = {
+      quantity: quatity,
+      productId: id
     }
     dispatch(createProductsCardThunk(data))
   }
@@ -141,12 +141,14 @@ const Home = () => {
                     to={`/product/${product.id}`}
                     variant="primary">Ver detalle
                   </Button>
-                  <Button
-            // className="btn_add"
-            // onClick={addProductHome}
-            >
-              <i className='bx bx-cart-add bx-md'></i>
-            </Button>
+                  <button
+                  className="btn_add_home"
+                  onClick={addProductHome}
+                  >
+                    <div className="img_card">
+                    Add. 
+                    </div>
+                  </button>
 
                 </Card.Body>
               </Card>
