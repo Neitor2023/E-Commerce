@@ -25,8 +25,29 @@ export const createProductsCardThunk = data => dispatch =>{
     
     axios
     .post("https://e-commerce-api-v2.academlo.tech/api/v1/cart", data, getConfig())
-    .then(() => dispatch(getProductsCardThunk()))
-    .catch(error => console.error(error))
+    .then(() => {
+        dispatch(getProductsCardThunk())
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Tu producto fue agregado con exito al carrito de compra',
+            showConfirmButton: false,
+            timer: 2000
+          })          
+    }
+    )
+    .catch((error) => {
+        if (error.response?.status === 403) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Uups...',
+            text: 'Este Producto YA EXISTE en el carrito de compra'
+          })          
+        } else {
+          console.log(error.response?.data);
+        }
+      });
+
     
 }
 

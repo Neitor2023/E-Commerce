@@ -32,11 +32,11 @@ const Home = () => {
   }, [])
 
   const addProductHome = (id) => {
-    // const data = {
-    //   quantity: 1,
-    //   productId: id
-    // }
-    // dispatch(createProductsCardThunk(data))
+    const data = {
+      quantity: 1,
+      productId: id
+    }
+    dispatch(createProductsCardThunk(data))
   }
 
 
@@ -124,8 +124,9 @@ const Home = () => {
           {products.map(product => (
             <Col className='mb-3' key={product.id}>
               <Card
-                as={Link}
-                to={`/product/${product.id}`}
+                // onClick={()=>`/product/${product.id}`}
+                // as={Link}
+                // to={`/product/${product.id}`}
               >
                 <Card.Img
                   variant="top"
@@ -133,9 +134,14 @@ const Home = () => {
                   style={{ height: 200 }} // , objectFit: "cover"
                 />
                 <Card.Body>
-                  <Card.Title>{product.title}</Card.Title>
+                  <Card.Title>
+                    <strong>{product.title}</strong>
+                    </Card.Title>
                   <Card.Text>
                     {product.description}
+                  </Card.Text>
+                  <Card.Text>
+                    Price : <strong>$ {product.price}</strong>
                   </Card.Text>
                   <Button
                     as={Link}
@@ -143,12 +149,14 @@ const Home = () => {
                     variant="primary">Ver detalle
                   </Button>
                   <button
+                  
                   className="btn_add_home"
-                  // onClick={()=> addProductHome(product.id)}
+                  onClick={()=> addProductHome(product.id)}
                   >
-                    {/* <div className="img_card"> */}
-                    {/* <i className='bx bxs-cart-add bx-sm bx-fade-left'></i> */}
-                    {/* </div> */}
+                    <div className="img_card"> 
+                     <i className='bx bxs-cart-add bx-sm bx-fade-left'></i> 
+                     </div> 
+                  
                   </button>
 
                 </Card.Body>

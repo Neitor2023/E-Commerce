@@ -20,7 +20,11 @@ const Login = () => {
       })
       .catch((error) => {
         if (error.response?.status === 401) {
-          alert("Credenciales incorrectas");
+          Swal.fire({
+            icon: 'error',
+            title: 'Uups...',
+            text: 'Credenciales incorrectas'
+          })          
         } else {
           console.log(error.response?.data);
         }
@@ -38,6 +42,7 @@ const Login = () => {
     <>
       {token ?
         <div style={{ maxWidth: 500, margin: "1rem auto", border: "1px solid black", padding: "1rem" }}>
+          <img src="../img/anonimo.png" alt="" />
           <Button onClick={logout}>Cerrar sesión</Button>
         </div>
         :
