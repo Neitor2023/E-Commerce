@@ -42,7 +42,7 @@ const Login = () => {
     <>
       {token ?
         <div style={{ maxWidth: 500, margin: "1rem auto", border: "1px solid black", padding: "1rem" }}>
-          <img src="../img/anonimo.png" alt="" />
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBqyOAjrqSxuXrqgZCuMHpPdXIKVKLgm1PzS3TMykG&s" alt="" />
           <Button onClick={logout}>Cerrar sesión</Button>
         </div>
         :
