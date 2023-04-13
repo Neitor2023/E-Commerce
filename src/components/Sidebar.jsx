@@ -6,30 +6,41 @@ import { getProductsCardThunk, checkoutProductsCardThunk } from '../store/slices
 import Quantity from './Quantity';
 import axios from 'axios';
 import getConfig from '../utils/getConfig'
+import './Sidebar.css'
 
 const Sidebar = ({ show, handleClose }) => {
+    const [total, setTotal] = useState(0)
     const dispatch = useDispatch()
-    useEffect(() => {
-        dispatch(getProductsCardThunk())
-    }, [])
-    const productsCard = useSelector(state => state.productsCard)
-    const Quantit = (id_op, id, Qua) => {
-        // console.log("Qua ",Qua)
-        console.log("id_op, id, Qua ",id_op, id, Qua)
-        // const quant_obj ={
-        //     Id: '',
-        //     productId: '',
-        //     quantity: ''    
-        // }
-        // dispatch(createProductsCardThunk(data))
-            // const data ={
-            //     quantity: Qua,
-            // }
+    const token = localStorage.getItem("token");
 
-        // axios                 
-        // .put(`https://e-commerce-api-v2.academlo.tech/api/v1/cart/${id_op}`,data, getConfig())
-        // .then(() => dispatch(getProductsCardThunk()))
-        // .catch(error => console.error(error))
+    useEffect(() => {
+        if (token) dispatch(getProductsCardThunk());
+    }, [token]);
+
+    const productsCard = useSelector(state => state.productsCard)
+
+    useEffect(() => {
+        totalProduct()
+    }, [productsCard]);
+
+    const totalProduct = () => {
+        let totalPrice = productsCard.reduce((acc, product) => acc + product.product?.price * product.quantity, 0)
+        setTotal(totalPrice)
+    }
+
+    const Quantit = (id_op, id, Qua) => {
+        const data = {
+            quantity: Qua,
+        }
+        axios
+            .put(`https://e-commerce-api-v2.academlo.tech/api/v1/cart/${id_op}`, data, getConfig())
+            .then(() => {
+                dispatch(getProductsCardThunk())
+            })
+            .catch(error => console.error(error))
+        setTimeout(() => {
+        }, "2000");
+
     }
     return (
         <Offcanvas show={show} onHide={handleClose} placement={"end"}>
@@ -37,35 +48,47 @@ const Sidebar = ({ show, handleClose }) => {
                 <Offcanvas.Title>Carrito de Compra</Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body>
-                    {productsCard.map(item => (
-                        // setQuantityCard(item.product?.quantity)
-                        // ,
-                        <div key={item.id}>
-                            <img src={item.product?.images[0].url} style={{ width: 80, objectFit: "contain" }} alt="" />
-                            {item.product?.title}
-                            {item.quantity}
-                            {/* {item.productId} */}
-                            Id Product
-                            {item.product?.id}
-                            {/* {item.product?.description} */}
-                            <br />
-                            <Button
-                            onClick={()=> Quantit(item.id, item.product?.id, (item.quantity+1))}
-                            >+</Button>
-                            {/* {quantityCard} */}
-                            {/* {item.product?.quantity} */}
-                            {item.quantity}
-                            <Button>-</Button>
-                            {/* 
-                            <Quantity
-                                IdProduct={item.product?.id}
-                                Quantity={item.quantity}
-                                quantityCard={Quamtity=> Quantit(Quamtity)}
-                            />
-                            */}
+                {productsCard.map(item => (
+                    <div key={item.id}>
+                        <div className='container_row'>
+                            <div className='img'>
+                                <img src={item.product?.images[0].url} style={{ width: 55, objectFit: "contain" }} alt="" />
+                            </div>
+                            <div className='detail_0_column'>
+                                <div className='title_dele_row'>
+                                    <div className='title'>
+                                        {item.product?.title}
+                                    </div>
+                                    <div className='dele'>
+                                        <i className='bx bx-trash bx-sm'></i>
+                                    </div>
+                                </div>
+                                <div className='btns_row'>
+                                    <button
+                                        className='btns'
+                                        onClick={() => Quantit(item.id, item.product?.id, (item.quantity + 1))}
+                                    >+</button>
+                                    <div className='quantit'>
+                                        {item.quantity}
+                                    </div>
+                                    <button
+                                        className='btns'
+                                        onClick={() => item.quantity > 0 ? Quantit(item.id, item.product?.id, (item.quantity - 1)) : item.quantity}
+                                    >-</button>
+                                </div>
+                            </div>
                         </div>
-                    ))
-                    }
+                        <div className='total'>
+                            Total: <strong>$ {item.product.price * item.quantity} </strong>
+                        </div>
+                    </div>
+                ))
+                }
+
+                <div className='total'>
+                    Total Card : <strong>$ {total} </strong>
+                </div>
+                <br />
                 <Button
                     onClick={() => dispatch(checkoutProductsCardThunk())}
                 >Checkout</Button>
